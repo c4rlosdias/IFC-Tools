@@ -1,0 +1,82 @@
+{
+    "01.01.01 - Alvenarias" : {
+        "ifc_class": "IfcWall",
+        "is_material": true,
+        "pset_descricao": "",
+        "prop_descricao" : [],
+        "unidade": "m²",
+        "quantidade": "CISCEA_QUANTIDADES.Área"
+    },    
+    "01.01.02 - Revestimentos" : {
+        "ifc_class": "IfcCovering",
+        "is_material": true,
+        "pset_descricao": "",
+        "prop_descricao" : [],
+        "unidade": "m²",
+        "quantidade": "CISCEA_QUANTIDADES.Área"
+    },
+    "01.02.01 - Portas": {
+        "ifc_class": "IfcDoor",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição"],
+        "unidade": "un",
+        "quantidade": "contador"
+    },
+    "02.03.01 - Concreto de Lajes": {
+        "ifc_class": "IfcSlab",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição", "Concreto fck"],
+        "unidade": "m²",
+        "quantidade": "CISCEA_QUANTIDADES.Volume de Concreto"
+    },
+    "02.03.02 - Forma de Lajes": {
+        "ifc_class": "IfcSlab",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição"],
+        "unidade": "m²",
+        "quantidade": "CISCEA_QUANTIDADES.Área de Fôrma"
+    },
+    "02.03.03 - Armação de Lajes": {
+        "ifc_class": "IfcSlab",
+        "is_material": false,
+        "pset_descricao": "CISCEA_M_QUANTIDADES",
+        "prop_descricao": ["Armação de Laje, Peso_Ø5.00 "],
+        "unidade": "m²",
+        "quantidade": "CISCEA_QUANTIDADES.Área de Fôrma"
+    },
+    "05.01.01 - Tubulação": {
+        "ifc_class": "IfcFlowSegment",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição", "Diâmetro Nominal", "instalação"],
+        "unidade": "m",
+        "quantidade": "CISCEA_QUANTIDADES.Comprimento"
+    },
+    "05.01.02 - Conexões": {
+        "ifc_class": "IfcFlowFitting",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição"],
+        "unidade": "un",
+        "quantidade": "contador"
+    },
+    "05.01.03 - Equipamentos": {
+        "ifc_class": "IfcBuildingElementProxy",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição"],
+        "unidade": "un",
+        "quantidade": "contador"
+    },
+    "05.01.04 - Terminais": {
+        "ifc_class": "IfcFlowTerminal",
+        "is_material": false,
+        "pset_descricao": "CISCEA_IDENTIFICAÇÃO",
+        "prop_descricao": ["Descrição"],
+        "unidade": "un",
+        "quantidade": "contador"
+    }
+}
