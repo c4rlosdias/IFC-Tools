@@ -21,10 +21,14 @@ bl_info = {
     "warning" : "",
     "category" : "Generic"
 }
-
+import os
+import sys
 from bpy.props import PointerProperty
 from bpy.types import Scene
 from bpy.utils import register_class, unregister_class
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "libs", "site", "packages"))
+
 from . operators import *
 from . panels import *
 from . properties import MyProperties
