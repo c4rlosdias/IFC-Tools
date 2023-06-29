@@ -37,7 +37,6 @@ from . properties import MyProperties
 classes = [
     Panel_Quantity,
     Operator_Import,
-    Operator_Export,
     Operator_Quantity,
     MyProperties
 ]

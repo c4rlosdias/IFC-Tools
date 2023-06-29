@@ -17,7 +17,7 @@ def create_quantity(json_file, xlsx_file):
 
         for element in elements:
             p = round((100*c )/ttl, 0)
-            print(f'Analisando elementos : {p}%')
+            print(f'Analyzing elements : {p}%')
             ifc_class = element.is_a()
 
             # Obtem uma lista com os serviços da classe ifc do elemento
@@ -35,45 +35,48 @@ def create_quantity(json_file, xlsx_file):
                         for material in materials:
                             desc_group = material.Name
                             # Obtem as quantidades
-                            quant= service['quantidade'].split('.')
+                            quant= service['quantity'].split('.')
                             quantity = util.get_pset(element=element, name=quant[0], prop=quant[1])                
                             if quantity:
                                 l_description.append(desc_group.strip())              
                                 l_eap.append(eap)
-                                l_unit.append(service['unidade'])                    
+                                l_unit.append(service['unit'])                    
                                 l_quantity.append(round(quantity, 2))
                 else:
-                    descriptions = service['prop_descricao']
-                    pset_desc = service['pset_descricao']            
-                    for description in descriptions:                
-                        item = util.get_pset(element=element, name=pset_desc, prop=description)
+                    # Obtem a descrição do serviço
+                    descriptions = service['prop_description']
+                    pset_desc = service['pset_description']            
+                    for description in descriptions:
+                        if service['is_attribute']:                
+                            item = element.get_info()[description]                            
+                        else:
+                            item = util.get_pset(element=element, name=pset_desc, prop=description)
                         if item:
                             desc_group = desc_group+ ' ' + str(item)
 
                     # Obtem as quantidades
-                    if service['quantidade'] == 'contador':
+                    if service['quantity'] == 'countable':
                         quantity = 1.0
                     else:
-                        quant= service['quantidade'].split('.')
+                        quant= service['quantity'].split('.')
                         quantity = util.get_pset(element=element, name=quant[0], prop=quant[1])
                     
                     if desc_group != '' and quantity:
                         l_description.append(desc_group.strip())
                         l_eap.append(eap)
-                        l_unit.append(service['unidade'])
+                        l_unit.append(service['unit'])
                         l_quantity.append(round(quantity, 2))
             c += 1
 
         dic = {
-            'EAP'        : l_eap,
-            'DESCRIÇÃO'  : l_description,
-            'UNIDADE'    : l_unit,
-            'QUANTIDADE' : l_quantity
+            'EAP'          : l_eap,
+            'DESCRIPTION'  : l_description,
+            'UNIT'         : l_unit,
+            'QUANTITY'     : l_quantity
         }
 
         df = pd.DataFrame(dic)
-        dfg = pd.DataFrame(df.groupby(['EAP', 'DESCRIÇÃO', 'UNIDADE']).sum())
-        print (dfg)
+        dfg = pd.DataFrame(df.groupby(['EAP', 'DESCRIPTION', 'UNIT']).sum())
         dfg.to_excel(xlsx_file + '.xlsx')
         dfg.to_csv(xlsx_file + '.csv')
         return 1
