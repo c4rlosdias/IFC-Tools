@@ -1,6 +1,6 @@
 # IFC Tools
 
-set of application tools for manipulation of IFC files:
+set of Blender AddOn application tools for manipulation of IFC files:
 
 ## Quantity Take Off:
     
