@@ -2,4 +2,33 @@
 
 set of application tools for manipulation of IFC files:
 
-. Extracts a quantity spreadsheet from an IFC file
+## Quantity Take Off:
+    **Extracts a quantity spreadsheet from an IFC file**
+    extracts a list of quantities from an IFC file according to measurement rules defined in a JSON file.
+
+    The configuration file is defined as follows:
+
+    {
+        "<measure name>" : {
+            "ifc_class"        : "<ifc class>",
+            "is_material"      : true | false,
+            "property"         : [<list of properties or attributes>],
+            "unit"             : "<unit of measure. E.g. m²>",
+            "quantity"         : "<quantity set.quantity property>"
+        },
+
+        (...)    
+
+    }
+
+    The values of each key must be populated according to the following rules:
+
+    Key   | Value
+    :----- | :------
+    ifc_class | IFC class of the element to be measured. e.g. "IfcWall"
+    is_material | true if quantification is made for each material of the element, otherwise false
+    property | A list of properties or attributes that will define the description of the service to be measured. In the case of property, the property set name should be written followed by the property name separated by a dot. e.g. "Pset_WallCommon.IS_External"
+    unit | unit of measure of the property. e.g. "m²"
+    quantity | A list of properties that will define the description of the service to be measured. the quantity set name should be written followed by the property name separated by a dot. e.g. "Qto_BaseQuantities.NetSideArea"
+
+
