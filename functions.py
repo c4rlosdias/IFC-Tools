@@ -43,14 +43,17 @@ def create_quantity(json_file, xlsx_file):
                                 l_unit.append(service['unit'])                    
                                 l_quantity.append(round(quantity, 2))
                 else:
-                    # Obtem a descrição do serviço
-                    descriptions = service['prop_description']
-                    pset_desc = service['pset_description']            
+                    # Obtem a lista de propriedades que descrevem o serviço
+                    descriptions = service['property']           
                     for description in descriptions:
-                        if service['is_attribute']:                
-                            item = element.get_info()[description]                            
+                        # Verifica se é uma propriedade ou um atributo
+                        if '.' in description:                           
+                            pset_desc = description.split('.')[0] 
+                            prop_desc = description.split('.')[1]
+                            item = util.get_pset(element=element, name=pset_desc, prop=prop_desc)
                         else:
-                            item = util.get_pset(element=element, name=pset_desc, prop=description)
+                            item = element.get_info()[description] 
+                        # se existe um item, concatena com as outras propriedades da lista
                         if item:
                             desc_group = desc_group+ ' ' + str(item)
 
