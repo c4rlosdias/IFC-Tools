@@ -4,19 +4,19 @@
         "is_material"      : true,
         "property"         : [],
         "unit"             : "m²",
-        "quantity"         : "CISCEA_QUANTIDADES.Área"
+        "quantity"         : "CISCEA_QUANTIDADES..Área"
     },    
     "01.01.02 - Revestimentos" : {
         "ifc_class"        : "IfcCovering",
         "is_material"      : true,
         "property"         : [],
         "unit"             : "m²",
-        "quantity"         : "CISCEA_QUANTIDADES.Área"
+        "quantity"         : "CISCEA_QUANTIDADES..Área"
     },
     "01.02.01 - Portas": {
         "ifc_class"        : "IfcDoor",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO.Descrição"],
+        "property"         : ["CISCEA_IDENTIFICAÇÃO..Descrição"],
         "unit"             : "un",
         "quantity"         : "countable"
     },
@@ -25,12 +25,12 @@
         "is_material"      : false,
         "property"         : ["CISCEA_IDENTIFICAÇÃO.Descrição", "CISCEA_IDENTIFICAÇÃO.Diâmetro Nominal", "CISCEA_IDENTIFICAÇÃO.instalação"],
         "unit"             : "m",
-        "quantity"         : "CISCEA_QUANTIDADES.Comprimento"
+        "quantity"         : "CISCEA_QUANTIDADES..Comprimento"
     },
     "05.01.02 - Conexões": {
         "ifc_class"        : "IfcFlowFitting",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO.Descrição"],
+        "property"         : ["CISCEA_IDENTIFICAÇÃO..Descrição"],
         "unit"             : "un",
         "quantity"         : "countable"
     },
@@ -41,11 +41,18 @@
         "unit"             : "un",
         "quantity"         : "countable"
     },
-    "05.01.04 - Terminais": {
-        "ifc_class"        : "IfcFlowTerminal",
+    "05.01.06 - Pilares": {
+        "ifc_class"        : "IfcColumn",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO.Descrição"],
-        "unit"             : "un",
-        "quantity"         : "countable"
+        "property"         : "Armação de viga CA-50 6.3mm",
+        "unit"             : "kg",
+        "quantity"         : "CISCEA_QUANTIDADES..Peso_Ø6.30"
+    },
+    "05.01.07 - Pilares": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : ["CISCEA_IDENTIFICAÇÃO..Concreto fck"],
+        "unit"             : "m³",
+        "quantity"         : "CISCEA_QUANTIDADES..Volume de Concreto"
     }
 }

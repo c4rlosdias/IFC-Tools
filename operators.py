@@ -1,6 +1,6 @@
-import bpy
 from bpy.types import Operator
 from bpy.props import StringProperty
+from bpy.path import ensure_ext
 from . functions import *
 
 class Operator_Import(Operator):
@@ -29,11 +29,13 @@ class Operator_Quantity(Operator):
     bl_label = "Generate spreadsheet file"
     bl_options = {"REGISTER", "UNDO"}
 
+    filename_ext = '.xlsx'
     filepath     : StringProperty(subtype="FILE_PATH")
-    filter_glob  : StringProperty(default='*.xlsx', options={'HIDDEN'})
+    #filter_glob  : StringProperty(default='*.xlsx', options={'HIDDEN'}, )
 
     def execute(self, context):
         try:
+            self.filepath = ensure_ext(self.filepath, '.xlsx')
             props = context.scene.my_props
             props.file_quantity = self.filepath
             result = create_quantity(props.file_settings, props.file_quantity)
@@ -48,5 +50,6 @@ class Operator_Quantity(Operator):
         return {"FINISHED"}
     
     def invoke(self, context, event):
+        self.filepath = ensure_ext(self.filepath, '.xlsx')
         context.window_manager.fileselect_add(self)
         return {"RUNNING_MODAL"} 
