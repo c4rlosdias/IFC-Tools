@@ -34,4 +34,6 @@ property | A list of properties or attributes that will define the description o
 unit | unit of measure of the property. e.g. "m²"
 quantity | A list of properties that will define the description of the service to be measured. the quantity set name should be written followed by the property name separated by a dot. e.g. "Qto_BaseQuantities..NetSideArea"
 
+Download the last version in [Releases](https://github.com/c4rlosdias/IFC-Tools/releases)
+
 
