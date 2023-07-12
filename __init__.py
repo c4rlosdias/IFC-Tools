@@ -31,14 +31,16 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "li
 
 from . operators import *
 from . panels import *
-from . properties import MyProperties
+from . properties import MyProperties, ListObjects
 
     
 classes = [
     Panel_Quantity,
+    Panel_Objects,
     Operator_Import,
     Operator_Quantity,
-    MyProperties
+    ListObjects,
+    MyProperties    
 ]
 
 def register():
