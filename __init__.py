@@ -36,9 +36,10 @@ from . properties import MyProperties, ListObjects
     
 classes = [
     Panel_Quantity,
-    Panel_Objects,
+    Panel_Setorize,
     Operator_Import,
     Operator_Quantity,
+    Operator_Setorize,
     ListObjects,
     MyProperties    
 ]

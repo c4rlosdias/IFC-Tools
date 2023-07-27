@@ -11,5 +11,6 @@ class ListObjects(PropertyGroup):
 class MyProperties(PropertyGroup):
     file_settings  : StringProperty(name='', default='')
     file_quantity  : StringProperty(name='', default='')
-    list_objects   : CollectionProperty(name='list', type=ListObjects)
+    pset_name      : StringProperty(name="")
+    prop_name      : StringProperty(name="")
 
