@@ -1,58 +1,268 @@
 {
-    "01.01.01 - Alvenarias" : {
+    "01.01" : {
         "ifc_class"        : "IfcWall",
         "is_material"      : true,
         "property"         : [],
         "unit"             : "m²",
-        "quantity"         : "CISCEA_QUANTIDADES..Área"
+        "quantity"         : ["Dimensões..Área"]
     },    
-    "01.01.02 - Revestimentos" : {
+    "01.02" : {
         "ifc_class"        : "IfcCovering",
         "is_material"      : true,
         "property"         : [],
         "unit"             : "m²",
-        "quantity"         : "CISCEA_QUANTIDADES..Área"
+        "quantity"         : ["Dimensões..Área"]
     },
-    "01.02.01 - Portas": {
+    "01.03": {
         "ifc_class"        : "IfcDoor",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO..Descrição"],
+        "property"         : ["Dados de identidade(Type)..Descrição"],
         "unit"             : "un",
-        "quantity"         : "countable"
+        "quantity"         : [1]
     },
-    "05.01.01 - Tubulação": {
+    "01.04": {
+        "ifc_class"        : "IfcWindow",
+        "is_material"      : false,
+        "property"         : ["Dados de identidade(Type)..Descrição"],
+        "unit"             : "un",
+        "quantity"         : [1]
+    },
+    "01.05": {
+        "ifc_class"        : "IfcWindow",
+        "is_material"      : false,
+        "property"         : ["Dados de identidade(Type)..Descrição Contravergas"],
+        "unit"             : "m",
+        "quantity"         : ["Dimensões(Type)..Largura", 0.20]
+    },
+    "11.01": {
         "ifc_class"        : "IfcFlowSegment",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO.Descrição", "CISCEA_IDENTIFICAÇÃO.Diâmetro Nominal", "CISCEA_IDENTIFICAÇÃO.instalação"],
+        "property"         : ["CISCEA_IDENTIFICAÇÃO..Descrição", "CISCEA_IDENTIFICAÇÃO..Diâmetro Nominal", "CISCEA_IDENTIFICAÇÃO..instalação"],
         "unit"             : "m",
-        "quantity"         : "CISCEA_QUANTIDADES..Comprimento"
+        "quantity"         : ["CISCEA_QUANTIDADES..Comprimento"]
     },
-    "05.01.02 - Conexões": {
+    "11.02": {
         "ifc_class"        : "IfcFlowFitting",
         "is_material"      : false,
         "property"         : ["CISCEA_IDENTIFICAÇÃO..Descrição"],
         "unit"             : "un",
-        "quantity"         : "countable"
+        "quantity"         : [1]
     },
-    "05.01.03 - Equipamentos": {
+    "11.03": {
         "ifc_class"        : "IfcBuildingElementProxy",
         "is_material"      : false,
         "property"         : ["Tag", "Name"],
         "unit"             : "un",
-        "quantity"         : "countable"
+        "quantity"         : [1]
     },
-    "05.01.06 - Pilares": {
+    "02.01": {
         "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-60 5mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 5 mm"]
+    },
+    "02.02": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 6.3mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 6.3 mm"]
+    },
+    "03.03": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 8 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 8 mm"]
+    },
+    "03.04": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 10 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 10 mm"]
+    },
+    "03.05": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 12.5mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 12.5 mm"]
+    },
+    "03.06": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 16 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 16 mm"]
+    },
+    "03.07": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 20 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 20 mm"]
+    },
+    "03.08": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Armação de pilar CA-50 25 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 25 mm"]
+    },    
+    "03.09": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : "Concretagem de pilar fck 35Mpa",
+        "unit"             : "m³",
+        "quantity"         : ["Dimensões..Volume"]
+    },
+    "03.10": {
+        "ifc_class"        : "IfcColumn",
+        "is_material"      : false,
+        "property"         : ["Construção..Tipo de Fôrma"],
+        "unit"             : "m³",
+        "quantity"         : ["Dados..Área de Fôrma"]
+    },
+    "04.01": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-60 5mm",
+        "unit"             : "kg",
+        "quantity"         : "Conjunto de vergalhões..Aço CA-50 - 5 mm"
+    },
+    "04.02": {
+        "ifc_class"        : "IfcBeam",
         "is_material"      : false,
         "property"         : "Armação de viga CA-50 6.3mm",
         "unit"             : "kg",
-        "quantity"         : "CISCEA_QUANTIDADES..Peso_Ø6.30"
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 6.3 mm"]
     },
-    "05.01.07 - Pilares": {
-        "ifc_class"        : "IfcColumn",
+    "04.03": {
+        "ifc_class"        : "IfcBeam",
         "is_material"      : false,
-        "property"         : ["CISCEA_IDENTIFICAÇÃO..Concreto fck"],
+        "property"         : "Armação de viga CA-50 8 mm",
+        "unit"             : "kg",
+        "quantity"         : "Conjunto de vergalhões..Aço CA-50 - 8 mm"
+    },
+    "04.04": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-50 10 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 10 mm"]
+    },
+    "04.05": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-50 12.5mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 12.5 mm"]
+    },
+    "04.06": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-50 16 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 16 mm"]
+    },
+    "04.07": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-50 20 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 20 mm"]
+    },
+    "04.08": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Armação de viga CA-50 25 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 25 mm"]
+    },    
+    "04.09": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : "Concretagem de viga fck 35Mpa",
         "unit"             : "m³",
-        "quantity"         : "CISCEA_QUANTIDADES..Volume de Concreto"
+        "quantity"         : ["Dimensões..Volume"]
+    },
+    "04.10": {
+        "ifc_class"        : "IfcBeam",
+        "is_material"      : false,
+        "property"         : ["Construção..Tipo de Fôrma"],
+        "unit"             : "m³",
+        "quantity"         : ["Dados..Área de Fôrma"]
+    },
+    "05.01": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-60 5mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 5 mm"]
+    },
+    "05.02": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 6.3mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 6.3 mm"]
+    },
+    "05.03": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 8 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 8 mm"]
+    },
+    "05.04": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 10 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 10 mm"]
+    },
+    "05.05": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 12.5mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 12.5 mm"]
+    },
+    "05.06": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 16 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 16 mm"]
+    },
+    "05.07": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 20 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 20 mm"]
+    },
+    "05.08": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Armação de laje CA-50 25 mm",
+        "unit"             : "kg",
+        "quantity"         : ["Conjunto de vergalhões..Aço CA-50 - 25 mm"]
+    },    
+    "05.09": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : "Concretagem de laje fck 35Mpa",
+        "unit"             : "m³",
+        "quantity"         : ["Dimensões..Volume"]
+    },
+    "05.10": {
+        "ifc_class"        : "IfcSlab",
+        "is_material"      : false,
+        "property"         : ["Construção..Tipo de Fôrma"],
+        "unit"             : "m³",
+        "quantity"         : ["Dados..Área de Fôrma"]
     }
 }

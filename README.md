@@ -15,7 +15,7 @@ The configuration file is defined as follows:
             "is_material"      : true | false,
             "property"         : [<list of properties or attributes>] or "<description>",
             "unit"             : "<unit of measure>",
-            "quantity"         : "<quantity set..quantity property>"
+            "quantity"         : ["<list of quantities or numbers to add>"]
         },
 
         (...)    
@@ -32,10 +32,13 @@ ifc_class | IFC class of the element to be measured. e.g. "IfcWall"
 is_material | true if quantification is made for each material of the element, otherwise false
 property | A list of properties or attributes that will define the description of the service to be measured. In the case of property, the property set name should be written followed by the property name separated by two dots. e.g. "Pset_WallCommon..IsExternal". If the value is a string, then this string will enter as a service description.
 unit | unit of measure of the property. e.g. "m²"
-quantity | property that define the description of the service to be measured. the quantity set name should be written followed by the property name separated by a dot. e.g. "Qto_BaseQuantities..NetSideArea"
+quantity | A list of quantities and/or number to sum. the quantity set name should be written followed by the property name separated by a dot. e.g. "Qto_BaseQuantities..NetSideArea"
 
 Download the last version in [Releases](https://github.com/c4rlosdias/IFC-Tools/releases)
 
 Download JSON sample file in [sample.json](https://github.com/c4rlosdias/IFC-Tools/blob/main/settings.json)
 
-
+## Sectorizes Objects:
+    
+**Sectores objects adding sector names to properties**
+populates a given property of a given property set with the name of the space (IfcSpace) that surrounds it.

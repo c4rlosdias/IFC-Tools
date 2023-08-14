@@ -35,13 +35,18 @@ def create_quantity(json_file, xlsx_file):
                         for material in materials:
                             desc_group = material.Name
                             # Obtem as quantidades
-                            quant= service['quantity'].split('..')
-                            quantity = util.get_pset(element=element, name=quant[0], prop=quant[1])                
-                            if quantity:
+                            tot_quantity = 0
+                            for quant in service['quantity']:
+                                prop_quant= quant.split('..')
+                                q = util.get_pset(element=element, name=prop_quant[0], prop=prop_quant[1])
+                                if q:
+                                    tot_quantity += q
+                                              
+                            if tot_quantity > 0:
                                 l_description.append(desc_group.strip())              
                                 l_eap.append(eap)
                                 l_unit.append(service['unit'])                    
-                                l_quantity.append(round(quantity, 2))
+                                l_quantity.append(round(tot_quantity, 2))
                 else:
                     # Obtem a lista de propriedades que descrevem o serviço
                     descriptions = service['property'] 
@@ -51,7 +56,7 @@ def create_quantity(json_file, xlsx_file):
                     else:                                  
                         for description in descriptions:                            
                             # Verifica se é uma propriedade ou um atributo
-                            if '.' in description:                           
+                            if '..' in description:                                                      
                                 pset_desc = description.split('..')[0] 
                                 prop_desc = description.split('..')[1]
                                 item = util.get_pset(element=element, name=pset_desc, prop=prop_desc)
@@ -65,18 +70,22 @@ def create_quantity(json_file, xlsx_file):
                                 desc_group = desc_group+ ' ' + str(item)
 
                     # Obtem as quantidades
-                    if service['quantity'] == 'countable':
-                        quantity = 1.0
-                    else:
-                        quant= service['quantity'].split('..')
-                        quantity = util.get_pset(element=element, name=quant[0], prop=quant[1])
+                    tot_quantity = 0
+                    for quant in service['quantity']:
+                        if type(quant) == float or type(quant) == int:
+                            tot_quantity += quant
+                        else:
+                            prop_quant= quant.split('..')
+                            q = util.get_pset(element=element, name=prop_quant[0], prop=prop_quant[1])
+                            if q:
+                                tot_quantity += q
 
                     # Acrescenta um novo quantitativo à lista de serviços
                     if desc_group != '' and quantity:
                         l_description.append(desc_group.strip())
                         l_eap.append(eap)
                         l_unit.append(service['unit'])
-                        l_quantity.append(round(quantity, 2))
+                        l_quantity.append(round(tot_quantity, 2))
             c += 1
 
         dic = {

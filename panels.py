@@ -23,7 +23,7 @@ class Panel_Quantity(Panel):
         row.operator(Operator_Quantity.bl_idname, text='Generate spreadsheet', icon='TEXT') 
    
 class Panel_Setorize(Panel):
-    bl_label        = "Setorize Objects"
+    bl_label        = "Sectorizes Objects"
     bl_idname       = "VIEW3D_PT_Setorize_objects"
     bl_space_type   = 'VIEW_3D'
     bl_region_type  = 'UI'
