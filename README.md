@@ -36,4 +36,6 @@ quantity | property that define the description of the service to be measured. t
 
 Download the last version in [Releases](https://github.com/c4rlosdias/IFC-Tools/releases)
 
+Download JSON sample file in [sample.json](https://github.com/c4rlosdias/IFC-Tools/blob/main/settings.json)
+
 
