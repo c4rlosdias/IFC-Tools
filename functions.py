@@ -81,7 +81,7 @@ def create_quantity(json_file, xlsx_file):
                                 tot_quantity += q
 
                     # Acrescenta um novo quantitativo à lista de serviços
-                    if desc_group != '' and quantity:
+                    if desc_group != '' and tot_quantity > 0:
                         l_description.append(desc_group.strip())
                         l_eap.append(eap)
                         l_unit.append(service['unit'])

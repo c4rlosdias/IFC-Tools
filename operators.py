@@ -51,11 +51,13 @@ class Operator_Quantity(Operator):
                 self.report({"INFO"}, 'Operation completed!')
             else:
                 self.report({"ERROR"}, 'Could not write output file!')
+            return {"FINISHED"}
 
         except ValueError as ve:
             self.report({"ERROR"}, 'Something went wrong: ', ve)
+            return {"FINISHED"}
 
-        return {"FINISHED"}
+        
     
     def invoke(self, context, event):
         self.filepath = ensure_ext(self.filepath, '.xlsx')
