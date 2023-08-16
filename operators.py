@@ -89,30 +89,22 @@ class Operator_Setorize(Operator):
             
             for space in spaces:
                 colored = False
-                setor = space.Name
-                print("space name " + setor)               
+                setor = space.Name                               
                 if space.PredefinedType == "USERDEFINED" and space.ObjectType.upper() == "SETOR": 
+                    print("space name " + setor)
                     c = 0                   
-                    elements = tree.select(space, completely_within=False)
-                    r = random.randint(0,255)/255
-                    g = random.randint(0,255)/255
-                    b = random.randint(0,255)/255
-                    
+                    elements = tree.select(space, completely_within=False)                   
                     print(f"Processing elements of {space.Name}...")
+                    print(len(elements))
                     for element in elements:                        
-                        storey = ifcopenshell.util.element.get_container(element)                        
-                        if storey and not element.is_a('IfcSpace'):
-                            sector_name = storey.Name + '_' + setor
+                        storey = ifcopenshell.util.element.get_container(element)
+                        storey_name = storey.Name if storey else "Sem_pavimento"
+                        if not element.is_a('IfcSpace'):
+                            sector_name = storey_name + '_' + setor
                             pset = ifcopenshell.api.run("pset.add_pset", ifc_file, product=element, name=props.pset_name)
                             ifcopenshell.api.run("pset.edit_pset", ifc_file, pset=pset, properties={props.prop_name : sector_name})                            
-                            obj = tool.Ifc.get_object(element)
-                            obj.color = (r,g,b, 1)
-                            colored = True
                             c += 1
-                    print(f'{c} elements processed...')
-            if colored:
-                area = next(area for area in context.screen.areas if area.type == "VIEW_3D")
-                area.spaces[0].shading.color_type = "OBJECT"                             
+                    print(f'{c} elements processed...')                         
                                         
             self.report({"INFO"}, 'Operation completed!')
             print('Operation completed!')

@@ -76,9 +76,10 @@ def create_quantity(json_file, xlsx_file):
                             tot_quantity += quant
                         else:
                             prop_quant= quant.split('..')
-                            q = util.get_pset(element=element, name=prop_quant[0], prop=prop_quant[1])
-                            if q:
-                                tot_quantity += q
+                            if len(prop_quant) > 1:
+                                q = util.get_pset(element=element, name=prop_quant[0], prop=prop_quant[1])
+                                if q:
+                                    tot_quantity += q
 
                     # Acrescenta um novo quantitativo à lista de serviços
                     if desc_group != '' and tot_quantity > 0:
