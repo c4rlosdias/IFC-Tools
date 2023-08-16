@@ -40,5 +40,5 @@ Download JSON sample file in [sample.json](https://github.com/c4rlosdias/IFC-Too
 
 ## Sectorizes Objects:
     
-**Sectores objects adding sector names to properties**
-populates a given property of a given property set with the name of the space (IfcSpace) that surrounds it.
+**Sectorizes objects adding sector names to properties**
+populates a given property of a given property set with the name of the space (IfcSpace) that surrounds it. All elements that are inside spaces with the value 'USERDEFINED' in the predefinedtype attribute and 'sector' in the ObjectType attribute will have the given property set created and the property will have as value the concatenated floor with the name of the space.
