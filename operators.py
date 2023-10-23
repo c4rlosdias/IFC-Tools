@@ -3,6 +3,9 @@ from bpy.props import StringProperty
 from bpy.path import ensure_ext
 from . functions import *
 
+import bpy
+from . import bsdd
+import json
 import multiprocessing
 import random
 import ifcopenshell
@@ -10,6 +13,33 @@ import ifcopenshell.geom
 import ifcopenshell.util
 from blenderbim.bim.ifc import IfcStore
 import blenderbim.tool as tool
+
+def query_creator(result2):
+
+    #ifc_class = result2['relatedIfcEntityNames'][0]
+    ifc_class = 'IfcWindowtype'
+    props = result2['classificationProperties']
+    relations = result2['classificationRelations']
+    material = '/.*'
+    for relation in relations:
+        if relation['relationType'] == 'HasMaterial':
+            material = relation['relatedClassificationName']                       
+    q_prop = ''
+    for prop in props:
+        if "predefinedValue" in prop:
+            if prop["propertySet"] == "Attributes":
+                q_prop = q_prop + f', {prop["name"]}={prop["predefinedValue"]}'
+            else:
+                q_prop = q_prop + f', {prop["propertySet"]}.{prop["name"]}={prop["predefinedValue"]}'
+    
+        if "pattern" in prop:
+            if prop["propertySet"] == "Attributes":
+                q_prop = q_prop + f', {prop["name"]}=/{prop["pattern"]}/'
+            else:
+                q_prop = q_prop + f', {prop["propertySet"]}.{prop["name"]}=/{prop["pattern"]}/'
+                        
+    return f'{ifc_class} {q_prop}, material=/.*{material}.*/'
+
 
 class Operator_Import(Operator):
     """O arquivo de configuração é um arquivo no formato .JSON
@@ -64,6 +94,77 @@ class Operator_Quantity(Operator):
         context.window_manager.fileselect_add(self)
         return {"RUNNING_MODAL"} 
     
+class Operator_Classify(Operator):
+    """Tooltip"""
+    bl_idname = "cd.operator_classify"
+    bl_label = "Classify objects"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):        
+        try:
+            domain_uri = bpy.context.scene.BIMBSDDProperties.active_uri
+            domain_name = bpy.context.scene.BIMBSDDProperties.active_domain
+            ifc = IfcStore.file
+            queries = {}
+            if domain_uri != '':
+                client = bsdd.Client()
+                print('loading domain...')
+                result = client.get(
+                            f"api/Domain/v3/Classifications",
+                            {
+                                "namespaceUri": domain_uri,
+                                "useNestedClassifications": 'false',
+                            })
+                classes = result['classifications']
+                print('searching classifications...')
+                n = len(classes)
+                c = 0
+                for classe in classes:
+                    classe['code']
+                    result2 = client.get(
+                                f"api/Classification/v3",
+                                {
+                                    "namespaceUri": classe['namespaceUri'],
+                                    "useNestedClassifications": 'true',
+                                })                           
+                    if 'relatedIfcEntityNames' in result2:                      
+                        query = query_creator(result2)
+                        queries[classe['code']] = [classe['name'], query, classe['namespaceUri']]
+                    c += 1
+                    print(f'{c} de {n}')
+                print('Selecting objects..')
+                
+
+                for code in queries:
+                    name = queries[code][0]
+                    query = queries[code][1]
+                    uri = queries[code][2]
+                    objects = ifcopenshell.util.selector.filter_elements(ifc, query) 
+                    classification = None                 
+                    for object in objects:
+                        for element in ifc.by_type('IfcClassification'):
+                            if element.Location == domain_uri:
+                                classification = element
+                                break
+                        if not classification:
+                            classification = ifcopenshell.api.run("classification.add_classification", tool.Ifc.get(), classification= domain_name)
+                            classification.Location = domain_uri
+                        reference = ifcopenshell.api.run(
+                            "classification.add_reference",
+                            tool.Ifc.get(),
+                            product=object,
+                            classification=classification,
+                            identification=code,
+                            name=name,
+                        )
+                        reference.Location = uri
+
+
+        except ValueError as ve:
+            self.report({"ERROR"}, 'Something went wrong: ', ve)
+
+        return {"FINISHED"}  
+
 class Operator_Setorize(Operator):
     """Tooltip"""
     bl_idname = "cd.operator_setorize"

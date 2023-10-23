@@ -13,4 +13,5 @@ class MyProperties(PropertyGroup):
     file_quantity  : StringProperty(name='', default='')
     pset_name      : StringProperty(name="")
     prop_name      : StringProperty(name="")
+    domain         : StringProperty(name="")
 

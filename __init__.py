@@ -37,9 +37,11 @@ from . properties import MyProperties, ListObjects
 classes = [
     Panel_Quantity,
     Panel_Setorize,
+    Panel_Classify_objects,
     Operator_Import,
     Operator_Quantity,
     Operator_Setorize,
+    Operator_Classify,
     ListObjects,
     MyProperties    
 ]

@@ -1,5 +1,6 @@
 import bpy
 from bpy.types import Panel
+import bsdd
 from . operators import *
 
 class Panel_Quantity(Panel):
@@ -41,3 +42,20 @@ class Panel_Setorize(Panel):
         row.prop(props, 'prop_name')
         row = layout.row(align=True)
         row.operator(Operator_Setorize.bl_idname, text='Setorize objects', icon='UV_FACESEL') 
+
+class Panel_Classify_objects(Panel):
+    bl_label        = "Classify objects"
+    bl_idname       = "VIEW3D_PT_Classify_objects"
+    bl_space_type   = 'VIEW_3D'
+    bl_region_type  = 'UI'
+    bl_context      = "objectmode"
+    bl_category     = "IFC Tools"
+    
+    
+    def draw(self, context):
+        
+        props = context.scene.my_props
+        layout = self.layout        
+        layout.label(text="bSDD Domain:")
+        row = layout.row(align=True)
+        row.operator(Operator_Classify.bl_idname, text='Classify objects', icon='RESTRICT_COLOR_ON') 
